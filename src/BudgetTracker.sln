@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetTracker.Web", "BudgetTracker.Web\BudgetTracker.Web.csproj", "{FE7B413C-4058-4A3F-AFDB-04FE008E0029}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetTracker.Web", "BudgetTracker.Web\BudgetTracker.Web.csproj", "{1E703A71-AEDA-46DF-8A00-0183C74DB1BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetTracker.Tests", "BudgetTracker.Tests\BudgetTracker.Tests.csproj", "{56753107-9C1A-433F-A52D-F8B1229EE536}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FE7B413C-4058-4A3F-AFDB-04FE008E0029}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FE7B413C-4058-4A3F-AFDB-04FE008E0029}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FE7B413C-4058-4A3F-AFDB-04FE008E0029}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FE7B413C-4058-4A3F-AFDB-04FE008E0029}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E703A71-AEDA-46DF-8A00-0183C74DB1BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E703A71-AEDA-46DF-8A00-0183C74DB1BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E703A71-AEDA-46DF-8A00-0183C74DB1BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E703A71-AEDA-46DF-8A00-0183C74DB1BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56753107-9C1A-433F-A52D-F8B1229EE536}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56753107-9C1A-433F-A52D-F8B1229EE536}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56753107-9C1A-433F-A52D-F8B1229EE536}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56753107-9C1A-433F-A52D-F8B1229EE536}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
