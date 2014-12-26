@@ -1,4 +1,5 @@
-﻿using Nancy;
+﻿using BudgetTracker.Core.Context;
+using Nancy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,9 @@ namespace BudgetTracker.Web
 {
     public class HelloWorldModule : NancyModule
     {
-        public HelloWorldModule()
+        public HelloWorldModule(IBudgetTrackerDbContext db)
         {
-            Get["/"] = _ => "Hello World";
+            Get["/"] = _ => View["Index"];
         }
     }
 }
