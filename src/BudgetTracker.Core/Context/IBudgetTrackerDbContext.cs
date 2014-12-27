@@ -8,6 +8,5 @@ namespace BudgetTracker.Core.Context
 {
     public interface IBudgetTrackerDbContext
     {
-        string DoSomething();
     }
 }

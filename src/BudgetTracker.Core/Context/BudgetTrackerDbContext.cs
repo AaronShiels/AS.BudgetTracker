@@ -8,9 +8,5 @@ namespace BudgetTracker.Core.Context
 {
     public class BudgetTrackerDbContext : IBudgetTrackerDbContext
     {
-        public string DoSomething()
-        {
-            return "YOLO";
-        }
     }
 }

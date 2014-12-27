@@ -5,11 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace BudgetTracker.Web
+namespace BudgetTracker.Web.Modules
 {
-    public class HelloWorldModule : NancyModule
+    public class HelloModule : NancyModule
     {
-        public HelloWorldModule(IBudgetTrackerDbContext db)
+        public HelloModule(IBudgetTrackerDbContext db)
         {
             Get["/"] = _ => View["Index"];
         }
