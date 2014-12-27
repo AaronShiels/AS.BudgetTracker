@@ -119,6 +119,7 @@
     <Compile Include="Configuration\Bootstrapper.cs" />
     <Compile Include="Configuration\BundleConfig.cs" />
     <Compile Include="Configuration\CompositionConfig.cs" />
+    <Compile Include="Modules\AssetModule.cs" />
     <Compile Include="Modules\HelloModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />

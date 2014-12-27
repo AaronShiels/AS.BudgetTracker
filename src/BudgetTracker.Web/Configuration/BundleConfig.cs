@@ -23,20 +23,20 @@ namespace BudgetTracker.Web.Configuration
                 .Add("~/Content/font-awesome.css")
                 .Add("~/Content/site.css")
                 .WithMinifier<SquishIt.Framework.Minifiers.CSS.YuiMinifier>()
-                .AsCached("css", "~/Content/css");
+                .AsCached("styles", "~/bundles/css/styles");
 
             Bundle.JavaScript()
                 .Add("~/Scripts/jquery-2.1.1.js")
                 .Add("~/Scripts/bootstrap.js")
                 .Add("~/Scripts/angular.js")
                 .WithMinifier<SquishIt.Framework.Minifiers.JavaScript.MsMinifier>()
-                .AsCached("js", "~/Scripts/js");
+                .AsCached("scripts", "~/bundles/js/scripts");
         }
 
         private static Response RegisterPipeline(NancyContext ctx)
         {
-            ctx.ViewBag.Styles = Bundle.Css().RenderCached("css");
-            ctx.ViewBag.Scripts = Bundle.JavaScript().RenderCached("js");
+            ctx.ViewBag.Styles = Bundle.Css().RenderCachedAssetTag("styles");
+            ctx.ViewBag.Scripts = Bundle.JavaScript().RenderCachedAssetTag("scripts");
             return null;
         }
     }
