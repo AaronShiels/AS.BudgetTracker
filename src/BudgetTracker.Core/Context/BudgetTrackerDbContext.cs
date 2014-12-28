@@ -45,6 +45,7 @@ namespace BudgetTracker.Core.Context
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new TransactionMapping());
+            modelBuilder.Configurations.Add(new ScheduledItemMapping());
         }
     }
 }

@@ -10,7 +10,8 @@ namespace BudgetTracker.Core.Entities
     public class Transaction
     {
         public Guid Id { get; set; }
-        public DateTime Date { get; set; }
+        public DateTimeOffset DateSynced { get; set; }
+        public DateTime DateOccurred { get; set; }
         public decimal Amount { get; set; }
         public string Description { get; set; }
 
