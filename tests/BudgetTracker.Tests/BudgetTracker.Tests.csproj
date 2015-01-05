@@ -46,11 +46,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <None Include="Data\ScheduledItems.json" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Data\Transactions.json" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

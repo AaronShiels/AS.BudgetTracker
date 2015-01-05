@@ -3,11 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetTracker.Core", "BudgetTracker.Core\BudgetTracker.Core.csproj", "{EE78EE23-81DD-4620-86AB-5A5A4197BB9B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetTracker.Core", "src\BudgetTracker.Core\BudgetTracker.Core.csproj", "{EE78EE23-81DD-4620-86AB-5A5A4197BB9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetTracker.Web", "BudgetTracker.Web\BudgetTracker.Web.csproj", "{B6355FF7-03EB-45B8-B50D-B3F06A329B37}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetTracker.Web", "src\BudgetTracker.Web\BudgetTracker.Web.csproj", "{B6355FF7-03EB-45B8-B50D-B3F06A329B37}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetTracker.Tests", "BudgetTracker.Tests\BudgetTracker.Tests.csproj", "{C834F88C-72F6-4E41-8DC7-91011235E8C1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetTracker.Tests", "tests\BudgetTracker.Tests\BudgetTracker.Tests.csproj", "{C834F88C-72F6-4E41-8DC7-91011235E8C1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5E2C4074-5EEE-4A26-8E66-D140E29F5745}"
+	ProjectSection(SolutionItems) = preProject
+		resources\Schema\Create.sql = resources\Schema\Create.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

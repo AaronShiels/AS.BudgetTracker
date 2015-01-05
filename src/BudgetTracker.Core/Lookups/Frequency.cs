@@ -9,7 +9,6 @@ namespace BudgetTracker.Core.Lookups
     public enum Frequency
     {
         Unknown = 0,
-        OnceOff = 1,
         Weekly = 2,
         Fortnightly = 3,
         Monthly = 4,

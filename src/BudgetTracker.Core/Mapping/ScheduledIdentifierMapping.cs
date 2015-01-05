@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace BudgetTracker.Core.Mapping
 {
-    public class ScheduledItemMapping : EntityTypeConfiguration<ScheduledItem>
+    public class ScheduledIdentifierMapping : EntityTypeConfiguration<ScheduledIdentifier>
     {
-        public ScheduledItemMapping()
+        public ScheduledIdentifierMapping()
         {
-            ToTable("ScheduledItems");
+            ToTable("ScheduledIdentifiers");
             HasKey(e => e.Id);
         }
     }

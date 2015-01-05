@@ -18,23 +18,23 @@ begin transaction
 	on [Transactions] ([DateOccurred])
 	go
 
-	if exists (select * from [Information_Schema].[Tables] where [Table_Name] = 'ScheduledItems')
-	drop table [ScheduledItems]
+	if exists (select * from [Information_Schema].[Tables] where [Table_Name] = 'ScheduledIdentifiers')
+	drop table [ScheduledIdentifiers]
 
-	create table [dbo].[ScheduledItems] (
+	create table [dbo].[ScheduledIdentifiers] (
 		[Id] uniqueidentifier not null,
 		[Description] nvarchar(50) null,
 		[DateCreated] datetimeoffset not null,
 		[Amount] decimal(18,2) not null,
-		[IntendedLastDueDate] datetime not null,
-		[ActualLastDueDate] datetime null,
+		[DateLastDue] datetime not null,
+		[DateLastPaid] datetime null,
 		[Frequency] int not null,
 		[TransactionIdentifier] nvarchar(100) null,
-		constraint [PK_ScheduledItems] primary key nonclustered ([Id])
+		constraint [PK_ScheduledIdentifiers] primary key nonclustered ([Id])
 	)
 
-	create clustered index [CI_ScheduledItems]
-	on [ScheduledItems] ([DateCreated])
+	create clustered index [CI_ScheduledIdentifiers]
+	on [ScheduledIdentifiers] ([DateCreated])
 	go
 
 commit transaction
