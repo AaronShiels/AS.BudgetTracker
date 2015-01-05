@@ -26,7 +26,7 @@ namespace BudgetTracker.Web.Configuration
                 .AsCached("styles", "~/bundles/css/styles");
 
             Bundle.JavaScript()
-                .Add("~/Scripts/jquery-2.1.1.js")
+                .Add("~/Scripts/jquery-2.1.3.js")
                 .Add("~/Scripts/bootstrap.js")
                 .Add("~/Scripts/angular.js")
                 .WithMinifier<SquishIt.Framework.Minifiers.JavaScript.MsMinifier>()
