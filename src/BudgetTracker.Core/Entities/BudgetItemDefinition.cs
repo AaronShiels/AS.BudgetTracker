@@ -1,5 +1,6 @@
-﻿using BudgetTracker.Core.Queries;
+﻿using BudgetTracker.Core.Lookups;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,13 +8,14 @@ using System.Threading.Tasks;
 
 namespace BudgetTracker.Core.Entities
 {
-    public class Transaction
+    public class BudgetItemDefinition
     {
         public Guid Id { get; set; }
-        public DateTimeOffset DateSynced { get; set; }
-        public DateTime DateOccurred { get; set; }
-        public decimal Amount { get; set; }
         public string Description { get; set; }
+        public DateTimeOffset DateCreated { get; set; }
+        public decimal Amount { get; set; }
+        public Frequency Frequency { get; set; }
+        public string TransactionIdentifier { get; set; }
 
         public bool IsCredit()
         {
@@ -25,12 +27,6 @@ namespace BudgetTracker.Core.Entities
             return Amount < 0;
         }
 
-        public class All : IQuery<Transaction>
-        {
-            public IQueryable<Transaction> Filter(IQueryable<Transaction> items)
-            {
-                return items;
-            }
-        }
+        public virtual ICollection<BudgetItemPayment> Payments { get; set; }
     }
 }

@@ -2,39 +2,57 @@
 
 begin transaction
 
-	if exists (select * from [Information_Schema].[Tables] where [Table_Name] = 'Transactions')
-	drop table [Transactions]
+	if exists (select * from [Information_Schema].[Tables] where [Table_Name] = 'BankTransactions')
+	drop table [BankTransactions]
 
-	create table [dbo].[Transactions] (
-		[Id] uniqueidentifier not null,
+	create table [dbo].[BankTransactions] (
+		[Id] uniqueidentifier not null default newid(),
 		[DateSynced] datetimeoffset not null,
 		[DateOccurred] datetime not null,
 		[Amount] decimal(18,2) not null,
 		[Description] nvarchar(100) null,
-		constraint [PK_Transactions] primary key nonclustered ([Id])
+		constraint [PK_BankTransactions] primary key nonclustered ([Id])
 	)
 
-	create clustered index [CI_Transactions]
-	on [Transactions] ([DateOccurred])
+	create clustered index [CI_BankTransactions]
+	on [BankTransactions] ([DateOccurred] desc)
 	go
 
-	if exists (select * from [Information_Schema].[Tables] where [Table_Name] = 'ScheduledIdentifiers')
-	drop table [ScheduledIdentifiers]
+	if exists (select * from [Information_Schema].[Tables] where [Table_Name] = 'BudgetItemDefinitions')
+	drop table [BudgetItemDefinitions]
 
-	create table [dbo].[ScheduledIdentifiers] (
-		[Id] uniqueidentifier not null,
+	create table [dbo].[BudgetItemDefinitions] (
+		[Id] uniqueidentifier not null default newid(),
 		[Description] nvarchar(50) null,
 		[DateCreated] datetimeoffset not null,
 		[Amount] decimal(18,2) not null,
-		[DateLastDue] datetime not null,
-		[DateLastPaid] datetime null,
 		[Frequency] int not null,
 		[TransactionIdentifier] nvarchar(100) null,
-		constraint [PK_ScheduledIdentifiers] primary key nonclustered ([Id])
+		constraint [PK_BudgetItemDefinitions] primary key nonclustered ([Id])
 	)
 
-	create clustered index [CI_ScheduledIdentifiers]
-	on [ScheduledIdentifiers] ([DateCreated])
+	create clustered index [CI_BudgetItemDefinitions]
+	on [BudgetItemDefinitions] ([DateCreated])
+	go
+
+	if exists (select * from [Information_Schema].[Tables] where [Table_Name] = 'BudgetItemPayments')
+	drop table [BudgetItemPayments]
+
+	create table [dbo].[BudgetItemPayments] (
+		[Id] uniqueidentifier not null default newid(),
+		[DefinitionId] uniqueidentifier not null,
+		[DateDue] datetime not null,
+		[DatePaid] datetime null,
+		constraint [PK_BudgetItemPayments] primary key nonclustered ([Id])
+	)
+
+	create clustered index [CI_BudgetItemPayments]
+	on [BudgetItemPayments] ([DateDue])
+	go
+
+	create nonclustered index [IX_BudgetItemPayments_DefinitionId]
+	on [BudgetItemPayments] ([DefinitionId])
+	include ([DatePaid])
 	go
 
 commit transaction

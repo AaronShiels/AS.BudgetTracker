@@ -8,7 +8,7 @@
     <DisplayName>BudgetTracker (Dev)</DisplayName>
     <AppConfigPath>C:\Source\ASBudgetTracker\src\BudgetTracker.Web\Web.config</AppConfigPath>
   </Connection>
-  <Reference>C:\Source\ASBudgetTracker\src\BudgetTracker.Core\bin\Debug\BudgetTracker.Core.dll</Reference>
+  <Reference Relative="..\..\src\BudgetTracker.Core\bin\Debug\BudgetTracker.Core.dll">C:\Source\ASBudgetTracker\src\BudgetTracker.Core\bin\Debug\BudgetTracker.Core.dll</Reference>
   <NuGetReference>Magnum</NuGetReference>
   <NuGetReference>Newtonsoft.Json</NuGetReference>
   <Namespace>Magnum.Extensions</Namespace>
@@ -36,13 +36,13 @@ public class ScheduledItemDto {
 
 void Main()
 {
-	var transactionsData = File.ReadAllText(@"C:\Source\ASBudgetTracker\src\BudgetTracker.Tests\Data\Transactions.json");
-	var scheduledItemsData = File.ReadAllText(@"C:\Source\ASBudgetTracker\src\BudgetTracker.Tests\Data\ScheduledItems.json");
+	var transactionsData = File.ReadAllText(@"C:\Source\ASBudgetTracker\resources\Test Data\Transactions.json");
+	var scheduledItemsData = File.ReadAllText(@"C:\Source\ASBudgetTracker\resources\Test Data\ScheduledItems.json");
 	
 	var transactionDtos = JsonConvert.DeserializeObject<IEnumerable<TransactionDto>>(transactionsData);
 	var scheduledItemDtos = JsonConvert.DeserializeObject<IEnumerable<ScheduledItemDto>>(scheduledItemsData);
 	
-	var scheduledItems = scheduledItemDtos.Select(si => new ScheduledItem {
+	/*var scheduledItems = scheduledItemDtos.Select(si => new ScheduledItem {
 		Id = Guid.NewGuid(),
 		Description = si.Description,
 		Amount = si.Amount,
@@ -51,9 +51,9 @@ void Main()
 		ActualLastDueDate = si.DateLastDue,
 		TransactionIdentifier = si.Identifier,
 		Frequency = (Frequency) Enum.Parse(typeof(Frequency), si.Frequency)
-	});
+	});*/
 	
-	var transactions = transactionDtos.Select(t => new BudgetTracker.Core.Entities.Transaction {
+	var transactions = transactionDtos.Select(t => new BudgetTracker.Core.Entities.BankTransaction {
 		Id = Guid.NewGuid(),
 		DateSynced = DateTimeOffset.Now,
 		Amount = t.Amount,
@@ -62,7 +62,7 @@ void Main()
 	});
 	
 	var db = new BudgetTrackerDbContext();
-	scheduledItems.Each(si => db.Insert(si));
+	//scheduledItems.Each(si => db.Insert(si));
 	transactions.Each(t => db.Insert(t));
 	
 	db.SaveChanges();

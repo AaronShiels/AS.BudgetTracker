@@ -50,13 +50,13 @@
   <ItemGroup>
     <Compile Include="Context\BudgetTrackerDbContext.cs" />
     <Compile Include="Context\IBudgetTrackerDbContext.cs" />
-    <Compile Include="Entities\Identifier.cs" />
-    <Compile Include="Entities\OneOffIdentifier.cs" />
-    <Compile Include="Entities\ScheduledIdentifier.cs" />
-    <Compile Include="Entities\Transaction.cs" />
+    <Compile Include="Entities\BudgetItemDefinition.cs" />
+    <Compile Include="Entities\BudgetItemPayment.cs" />
+    <Compile Include="Entities\BankTransaction.cs" />
     <Compile Include="Lookups\Frequency.cs" />
-    <Compile Include="Mapping\ScheduledIdentifierMapping.cs" />
-    <Compile Include="Mapping\TransactionMapping.cs" />
+    <Compile Include="Mapping\BudgetItemDefinitionMapping.cs" />
+    <Compile Include="Mapping\BankTransactionMapping.cs" />
+    <Compile Include="Mapping\BudgetItemPaymentMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\IQuery.cs" />
   </ItemGroup>

@@ -21,7 +21,7 @@ namespace BudgetTracker.Web.Modules
             Get["/"] = _ => View["Index"];
             Get["/test"] = _ =>
             {
-                var transactions = _db.Query(new Transaction.All()).ToList();
+                var transactions = _db.Query(new BankTransaction.All()).ToList();
                 return JsonConvert.SerializeObject(transactions);
             };
         }
