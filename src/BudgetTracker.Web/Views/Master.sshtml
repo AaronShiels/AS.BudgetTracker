@@ -13,5 +13,6 @@
 <body>
     @Section['Content'];
     @Context.ViewBag.Scripts
+    @Section['Scripts'];
 </body>
 </html>

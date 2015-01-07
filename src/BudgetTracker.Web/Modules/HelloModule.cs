@@ -22,7 +22,7 @@ namespace BudgetTracker.Web.Modules
             Get["/test"] = _ =>
             {
                 var transactions = _db.Query(new BankTransaction.All()).ToList();
-                return JsonConvert.SerializeObject(transactions);
+                return transactions;
             };
         }
     }

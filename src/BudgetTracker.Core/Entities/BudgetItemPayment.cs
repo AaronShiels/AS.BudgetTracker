@@ -10,6 +10,14 @@ namespace BudgetTracker.Core.Entities
 {
     public class BudgetItemPayment
     {
+        protected BudgetItemPayment() { }
+
+        public BudgetItemPayment(DateTime dateDue)
+        {
+            Id = Guid.NewGuid();
+            DateDue = dateDue;
+        }
+
         public Guid Id { get; set; }
         public Guid DefinitionId { get; set; }
         public DateTime DateDue { get; set; }
@@ -24,11 +32,7 @@ namespace BudgetTracker.Core.Entities
             var nextDateDue = GetDateNextDue(Definition.Frequency);
 
             if (nextDateDue.HasValue)
-                Definition.Payments.Add(new BudgetItemPayment
-                {
-                    Id = Guid.NewGuid(),
-                    DateDue = nextDateDue.Value
-                });
+                Definition.Payments.Add(new BudgetItemPayment(nextDateDue.Value));
         }
 
         private DateTime? GetDateNextDue(Frequency frequency)

@@ -42,27 +42,12 @@ void Main()
 	var transactionDtos = JsonConvert.DeserializeObject<IEnumerable<TransactionDto>>(transactionsData);
 	var scheduledItemDtos = JsonConvert.DeserializeObject<IEnumerable<ScheduledItemDto>>(scheduledItemsData);
 	
-	/*var scheduledItems = scheduledItemDtos.Select(si => new ScheduledItem {
-		Id = Guid.NewGuid(),
-		Description = si.Description,
-		Amount = si.Amount,
-		DateCreated = DateTimeOffset.Now,
-		IntendedLastDueDate = si.DateLastDue,
-		ActualLastDueDate = si.DateLastDue,
-		TransactionIdentifier = si.Identifier,
-		Frequency = (Frequency) Enum.Parse(typeof(Frequency), si.Frequency)
-	});*/
+	var scheduledItems = scheduledItemDtos.Select(si => new BudgetItemDefinition(si.Description, si.Amount, (Frequency) Enum.Parse(typeof(Frequency), si.Frequency), si.DateNextDue, si.Identifier));
 	
-	var transactions = transactionDtos.Select(t => new BudgetTracker.Core.Entities.BankTransaction {
-		Id = Guid.NewGuid(),
-		DateSynced = DateTimeOffset.Now,
-		Amount = t.Amount,
-		DateOccurred = t.Date,
-		Description = t.Description
-	});
+	var transactions = transactionDtos.Select(t => new BankTransaction(t.Date, t.Amount, t.Description));
 	
 	var db = new BudgetTrackerDbContext();
-	//scheduledItems.Each(si => db.Insert(si));
+	scheduledItems.Each(si => db.Insert(si));
 	transactions.Each(t => db.Insert(t));
 	
 	db.SaveChanges();

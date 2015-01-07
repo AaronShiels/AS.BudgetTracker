@@ -25,8 +25,22 @@
 <div class="container">
     <div>Hello world</div>
     <hr />
+    <div id="content">
+
+    </div>
     <footer>
         <p>&copy; 2015 - Aaron Shiels</p>
     </footer>
 </div>
+@EndSection
+
+@Section['Scripts']
+<script type="text/javascript">
+    $(function () {
+        $.getJSON('/test', function (data) {
+            console.log(data);
+            $('#content').html(JSON.stringify(data));
+        });
+    });
+</script>
 @EndSection

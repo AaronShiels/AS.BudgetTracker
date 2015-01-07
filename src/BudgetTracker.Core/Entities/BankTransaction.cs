@@ -9,6 +9,18 @@ namespace BudgetTracker.Core.Entities
 {
     public class BankTransaction
     {
+        protected BankTransaction() { }
+
+        public BankTransaction(DateTime dateOccurred, decimal amount, string description)
+        {
+            Id = Guid.NewGuid();
+            DateSynced = DateTimeOffset.Now;
+
+            DateOccurred = dateOccurred;
+            Amount = amount;
+            Description = description;
+        }
+
         public Guid Id { get; set; }
         public DateTimeOffset DateSynced { get; set; }
         public DateTime DateOccurred { get; set; }
