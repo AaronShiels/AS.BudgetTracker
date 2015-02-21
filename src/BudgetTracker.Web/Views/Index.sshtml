@@ -37,7 +37,7 @@
 @Section['Scripts']
 <script type="text/javascript">
     $(function () {
-        $.getJSON('/test', function (data) {
+        $.getJSON('/budget', function (data) {
             console.log(data);
             $('#content').html(JSON.stringify(data));
         });

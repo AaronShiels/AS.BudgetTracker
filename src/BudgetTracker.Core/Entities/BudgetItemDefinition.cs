@@ -1,4 +1,6 @@
-﻿using BudgetTracker.Core.Lookups;
+﻿using BudgetTracker.Core.Calculations;
+using BudgetTracker.Core.Lookups;
+using BudgetTracker.Core.Queries;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -43,6 +45,29 @@ namespace BudgetTracker.Core.Entities
             return Amount < 0;
         }
 
+        public void UpdateSchedule(DateTime today)
+        {
+            if (Frequency == Frequency.OneOff)
+                return;
+
+            var mostRecentDueDate = Payments.Max(p => p.DateDue);
+            while (mostRecentDueDate < today)
+            {
+                var nextDueDate = mostRecentDueDate.GetNextDate(Frequency);
+                Payments.Add(new BudgetItemPayment(nextDueDate));
+
+                mostRecentDueDate = nextDueDate;
+            }
+        }
+
         public virtual ICollection<BudgetItemPayment> Payments { get; set; }
+
+        public class ByAll : IQuery<BudgetItemDefinition>
+        {
+            public IQueryable<BudgetItemDefinition> Filter(IQueryable<BudgetItemDefinition> items)
+            {
+                return items;
+            }
+        }
     }
 }

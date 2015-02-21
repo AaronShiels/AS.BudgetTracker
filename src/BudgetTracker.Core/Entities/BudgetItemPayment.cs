@@ -1,5 +1,6 @@
 ﻿using BudgetTracker.Core.Lookups;
 using BudgetTracker.Core.Queries;
+using BudgetTracker.Core.Calculations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,34 +25,5 @@ namespace BudgetTracker.Core.Entities
         public DateTime? DatePaid { get; set; }
 
         public virtual BudgetItemDefinition Definition { get; set; }
-
-        public void Pay(DateTime paymentDate)
-        {
-            DatePaid = paymentDate.Date;
-            
-            var nextDateDue = GetDateNextDue(Definition.Frequency);
-
-            if (nextDateDue.HasValue)
-                Definition.Payments.Add(new BudgetItemPayment(nextDateDue.Value));
-        }
-
-        private DateTime? GetDateNextDue(Frequency frequency)
-        {
-            switch (frequency)
-            {
-                case Frequency.Weekly:
-                    return DateDue.AddDays(7);
-                case Frequency.Fortnightly:
-                    return DateDue.AddDays(14);
-                case Frequency.Monthly:
-                    return DateDue.AddMonths(1);
-                case Frequency.HalfYearly:
-                    return DateDue.AddMonths(6);
-                case Frequency.Yearly:
-                    return DateDue.AddYears(1);
-                default:
-                    return null;
-            }
-        }
     }
 }

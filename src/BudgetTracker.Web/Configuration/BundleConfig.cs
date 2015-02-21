@@ -8,7 +8,7 @@ using System.Web;
 
 namespace BudgetTracker.Web.Configuration
 {
-    public class BundleConfig
+    public static class BundleConfig
     {
         public static void RegisterBundlePipeline(IPipelines pipelines)
         {

@@ -48,6 +48,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Calculations\Calculator.cs" />
     <Compile Include="Context\BudgetTrackerDbContext.cs" />
     <Compile Include="Context\IBudgetTrackerDbContext.cs" />
     <Compile Include="Entities\BudgetItemDefinition.cs" />
