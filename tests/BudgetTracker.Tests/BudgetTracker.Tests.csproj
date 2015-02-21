@@ -35,6 +35,31 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NSubstitute">
+      <HintPath>..\..\packages\NSubstitute.1.8.1.0\lib\net45\NSubstitute.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.core">
+      <HintPath>..\..\packages\NUnitTestAdapter.1.2\lib\nunit.core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="nunit.core.interfaces">
+      <HintPath>..\..\packages\NUnitTestAdapter.1.2\lib\nunit.core.interfaces.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.util">
+      <HintPath>..\..\packages\NUnitTestAdapter.1.2\lib\nunit.util.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="NUnit.VisualStudio.TestAdapter">
+      <HintPath>..\..\packages\NUnitTestAdapter.1.2\lib\NUnit.VisualStudio.TestAdapter.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Shouldly">
+      <HintPath>..\..\packages\Shouldly.2.4.0\lib\net40\Shouldly.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -46,7 +71,18 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Calculations\NextDueDateTests.cs" />
+    <Compile Include="Givn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\BudgetTracker.Core\BudgetTracker.Core.csproj">
+      <Project>{ee78ee23-81dd-4620-86ab-5a5a4197bb9b}</Project>
+      <Name>BudgetTracker.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

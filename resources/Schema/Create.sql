@@ -25,6 +25,8 @@ begin transaction
 		[Id] uniqueidentifier not null default newid(),
 		[Description] nvarchar(50) null,
 		[DateCreated] datetimeoffset not null,
+		[DateFirst] datetime not null,
+		[DateLast] datetime null,
 		[Amount] decimal(18,2) not null,
 		[Frequency] int not null,
 		[TransactionIdentifier] nvarchar(100) null,
@@ -42,7 +44,7 @@ begin transaction
 		[Id] uniqueidentifier not null default newid(),
 		[DefinitionId] uniqueidentifier not null,
 		[DateDue] datetime not null,
-		[DatePaid] datetime null,
+		[DatePaid] datetime not null,
 		constraint [PK_BudgetItemPayments] primary key nonclustered ([Id])
 	)
 

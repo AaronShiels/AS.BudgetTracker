@@ -14,26 +14,27 @@ namespace BudgetTracker.Core.Entities
     {
         protected BudgetItemDefinition() { }
 
-        public BudgetItemDefinition(string description, decimal amount, Frequency frequency, DateTime nextDateDue, string transactionIdentifier = null)
+        public BudgetItemDefinition(string description, decimal amount, Frequency frequency, DateTime dateFirst, DateTime? dateLast = null, string transactionIdentifier = null)
         {
             Id = Guid.NewGuid();
             DateCreated = DateTimeOffset.Now;
-            Payments = new List<BudgetItemPayment>();
-
             Description = description;
             Amount = amount;
+            DateFirst = dateFirst;
+            DateLast = dateLast;
             Frequency = frequency;
             TransactionIdentifier = transactionIdentifier;
-
-            Payments.Add(new BudgetItemPayment(nextDateDue));
         }
 
         public Guid Id { get; set; }
         public string Description { get; set; }
         public DateTimeOffset DateCreated { get; set; }
+        public DateTime DateFirst { get; set; }
+        public DateTime? DateLast { get; set; }
         public decimal Amount { get; set; }
         public Frequency Frequency { get; set; }
         public string TransactionIdentifier { get; set; }
+        public virtual ICollection<BudgetItemPayment> Payments { get; set; }
 
         public bool IsCredit()
         {
@@ -45,22 +46,23 @@ namespace BudgetTracker.Core.Entities
             return Amount < 0;
         }
 
-        public void UpdateSchedule(DateTime today)
+        public DateTime? GetNextDueDate()
         {
-            if (Frequency == Frequency.OneOff)
-                return;
+            var nextUnmetDate = DateFirst;
 
-            var mostRecentDueDate = Payments.Max(p => p.DateDue);
-            while (mostRecentDueDate < today)
-            {
-                var nextDueDate = mostRecentDueDate.GetNextDate(Frequency);
-                Payments.Add(new BudgetItemPayment(nextDueDate));
+            if (!Payments.Any())
+                return nextUnmetDate;
 
-                mostRecentDueDate = nextDueDate;
-            }
+            var topMetPayment = Payments.Max(p => p.DateDue);
+
+            if (topMetPayment >= DateLast)
+                return null;
+
+            while (nextUnmetDate <= topMetPayment)
+                nextUnmetDate = nextUnmetDate.GetNextDate(Frequency);
+
+            return nextUnmetDate;
         }
-
-        public virtual ICollection<BudgetItemPayment> Payments { get; set; }
 
         public class ByAll : IQuery<BudgetItemDefinition>
         {
